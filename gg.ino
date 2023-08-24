@@ -38,9 +38,9 @@
 // float Kinte = 0.0001;
 //////
 
-int base = 250;
+int base = 230;
 int maxspeed = 250;
-float Kprop = 6.187;
+float Kprop = 8.187;
 float Kderiv = 18.98;
 float Kinte = 0.0001;
 
@@ -404,7 +404,7 @@ void Brl() {
     if (line_position == 255 || line_position == -255) {
        base = 150;
        maxspeed = 250;
-       Kprop = 10.00;
+       Kprop = 13.00;
        Kderiv = 18.98;
        Kinte = 0.0001;
     }
@@ -456,4 +456,4 @@ void Leaw() {
 //   Motores(leftSpeed, rightSpeed);
 
 //   }
-// }
+// }u
