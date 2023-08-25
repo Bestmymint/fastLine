@@ -38,9 +38,9 @@
 // float Kinte = 0.0001;
 //////
 
-int base = 230;
+int base = 230; //chai
 int maxspeed = 250;
-float Kprop = 8.187;
+float Kprop = 8.887;
 float Kderiv = 18.98;
 float Kinte = 0.0001;
 
@@ -114,7 +114,16 @@ void loop() {
   //  }
   // Motores(leftSpeed, rightSpeed);
   Brl();
-
+  Leaw();
+  while(true){
+    base = 200;
+    maxspeed = 230;
+    Kprop = 8.887;
+    Kderiv = 20.98;
+    Kinte = 0.0002;
+    // Motores(leftSpeed, rightSpeed);
+  }
+  delay(60);
 
 
   // while(line_position != 255 || line_position != -255){
@@ -130,10 +139,7 @@ void loop() {
   //   }
   //   Motores(leftSpeed, rightSpeed);
   // }
-  // while(true){
-  //   Motores(0,0);
-  // }
-  // delay(60);
+  
 
   // int line_position = GetPos();
   // int Correction_power = PIDLambo(line_position, Kprop, Kderiv, Kinte);
@@ -400,13 +406,16 @@ void Brl() {
     if (rightSpeed > maxspeed) {
       rightSpeed = maxspeed;
     }
-    Motores(leftSpeed, rightSpeed);
+    Motores(leftSpeed, rightSpeed); 
     if (line_position == 255 || line_position == -255) {
-       base = 150;
+       Motores(base,base);
+       delay(20);
+       base = 130;
        maxspeed = 250;
-       Kprop = 13.00;
-       Kderiv = 18.98;
+       Kprop = 18.00;
+       Kderiv = 25.98;
        Kinte = 0.0001;
+       x = x + 1;
     }
   }
 }
@@ -419,14 +428,7 @@ void Brl() {
 void Leaw() {
 
   while (x != 2) {
-    int base = 150;
-    int maxspeed = 250;
-    float Kprop = 9.00;
-    float Kderiv = 18.98;
-    float Kinte = 0.0001;
 
-    int pos;
-    int x = 0;
     int line_position = GetPos();
     int Correction_power = PIDLambo(line_position, Kprop, Kderiv, Kinte);
     int leftSpeed = base + Correction_power;
@@ -438,22 +440,49 @@ void Leaw() {
       rightSpeed = maxspeed;
     }
     Motores(leftSpeed, rightSpeed);
+    if (line_position == 255 || line_position == -255) {
+     base = 230; //chai
+     maxspeed = 250;
+     Kprop = 8.887;
+     Kderiv = 18.98;
+     Kinte = 0.0001;
+     x = x + 1;
+    }
   }
 }
 
-// void FL(){
-//   while( x != 1){
-//   int line_position = GetPos();
-//   int Correction_power = PIDLambo(line_position, Kprop, Kderiv, Kinte);
-//   int leftSpeed = base + Correction_power;
-//   int rightSpeed = base - Correction_power;
-//   if(leftSpeed > maxspeed){
-//     leftSpeed = maxspeed;
-//   }
-//   if(rightSpeed > maxspeed){
-//     rightSpeed = maxspeed;
-//   }
-//   Motores(leftSpeed, rightSpeed);
+void FL(){
+  while( x != 4){
+  int line_position = GetPos();
+  int Correction_power = PIDLambo(line_position, Kprop, Kderiv, Kinte);
+  int leftSpeed = base + Correction_power;
+  int rightSpeed = base - Correction_power;
+  if(leftSpeed > maxspeed){
+    leftSpeed = maxspeed;
+  }
+  if(rightSpeed > maxspeed){
+    rightSpeed = maxspeed;
+  }
+  Motores(leftSpeed, rightSpeed);
+  if (line_position == 255 || line_position == -255) {
+    base = 200;
+    maxspeed = 230;
+    Kprop = 8.887;
+    Kderiv = 20.98;
+    Kinte = 0.0002;
+    x = x + 1;
+    }
+  }
+}
 
-//   }
-// }u
+
+
+
+
+
+
+
+
+
+
+
